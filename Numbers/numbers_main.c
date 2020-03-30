@@ -5,7 +5,7 @@
 
 	determines what type of number, a number is that input by user and need to determine whether or not the number is one of the following:
 	- A natural number (if not, report that it is an integer).
-	- An odd or even number. 
+	- An odd or even number.
 	- A prime number, or composite number.
 	- A triangular number (traditional starting point of one, not zero).
 	- A square number (traditional starting point of one, not zero).
@@ -114,7 +114,7 @@ int print(long long int num) {
 	// else if the number is negative, print the character for negative, then flip the sign of the number. 
 	//		then call RPrint on the number(the negated number, if the original number was negative).
 	if (num == 0) {
-		putchar(num + '0');
+		putchar((unsigned int)(num + '0'));
 		return 0;
 	}
 	else if (num < 0) {
@@ -147,7 +147,7 @@ int RPrint(long long int num) {
 
 /*!	 \fn long long int intOrNaturalChk(long long int num)
 	 \return 0
-	 \param num The user input number 
+	 \param num The user input number
 
 	 Determine the num is natural number or integer */
 int intOrNaturalChk(long long int num) {
@@ -155,7 +155,7 @@ int intOrNaturalChk(long long int num) {
 		puts("The number is a natural number.");
 	else
 		puts("The number is an integer.");
-	
+
 	return 0;
 }
 
@@ -180,7 +180,7 @@ int oddOrEvenChk(long long int num) {
 	 Determine the num is prime number or not */
 int primeOrCompositeChk(long long int num) {
 	bool boolPrime = true;
-	
+
 	// Corner case ( 0 , 1 )
 	if (num <= 1) {
 		boolPrime = false;
@@ -195,7 +195,7 @@ int primeOrCompositeChk(long long int num) {
 		}
 	}
 
-	if(boolPrime == true)
+	if (boolPrime == true)
 		puts("The number is prime.");
 	else
 		puts("The number is composites.");
@@ -236,7 +236,8 @@ int squareNumChk(long long int num) {
 	unsigned int int_squareNum = (unsigned int)squareNum;
 	unsigned int squreChk = int_squareNum * int_squareNum;
 
-	if (squreChk == num)
+	// number 0 is not square
+	if (num != 0 && squreChk == num)
 		puts("The number is square.");
 	else
 		puts("The number is not square.");
@@ -253,11 +254,15 @@ int factorialNumChk(long long int num) {
 	long long int fNum = 1;
 	long long int f = 1;
 
+	//formula to calculate factorial
+	// iterator f that will increase by 1
+	// fNum will keep to contain number that multiplay f with fNum
 	while (fNum < num) {
 		fNum *= f;
 		f++;
 	}
 
+	// if num(user input number) doesn't not match with fNum(fatorial number), num is not factorial number
 	if (fNum == num)
 		puts("The number is a factorial");
 	else
@@ -306,6 +311,7 @@ int powerOfTwoNumChk(long long int num) {
 	bool boolPNum = false;
 
 	while (pNum < num) {
+		// calculate power of two
 		pNum = pow(2, p);
 
 		if (pNum == num) {
@@ -315,7 +321,7 @@ int powerOfTwoNumChk(long long int num) {
 		p++;
 	}
 
-	if (boolPNum == true) 
+	if (boolPNum == true)
 		puts("The number is a power of two.");
 	else
 		puts("The number is not a power of two.");
